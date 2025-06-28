@@ -38,6 +38,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/public").permitAll()
+                        .requestMatchers("/register").permitAll()
                         .anyRequest()
                         .authenticated()
                 ).formLogin(Customizer.withDefaults()).build();
