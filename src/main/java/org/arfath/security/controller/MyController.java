@@ -33,10 +33,6 @@ public class MyController {
     }
 
 
-    @PostMapping("/register")
-    public ResponseEntity<UserEntity> registerUser(@RequestBody UserEntity user){
-        return ResponseEntity.ok(userService.register(user));
-    }
 
 
 

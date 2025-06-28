@@ -11,11 +11,11 @@ import java.util.List;
 @Service
 public class UserService {
     public UserRepository userRepository;
-    public PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+
     }
 
 
@@ -24,9 +24,5 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public UserEntity register(UserEntity user) {
-        String hasedpassword= passwordEncoder.encode(user.getPassword());
-        user.setPassword(hasedpassword);
-        return userRepository.save(user);
-    }
+
 }
