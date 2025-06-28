@@ -12,7 +12,7 @@ POST http://localhost:8080/register
 Content-Type: application/json
 
 {
-  "username": "arfu2",
-  "password": "aaa@123",
+  "username": "sania",
+  "password": "s@123",
   "roles": "USER"
 }
