@@ -1,5 +1,6 @@
 package org.arfath.security.config;
 
+import org.arfath.security.filter.JwtFilter;
 import org.arfath.security.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
 /*
@@ -40,6 +42,12 @@ HttpSecurity
 
 public class SecurityConfig {
 
+    private JwtFilter jwtFilter;
+
+    public SecurityConfig(JwtFilter jwtFilter) {
+        this.jwtFilter = jwtFilter;
+    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
        return httpSecurity
@@ -48,7 +56,9 @@ public class SecurityConfig {
                         .requestMatchers("/login", "/register").permitAll()
                         .anyRequest()
                         .authenticated()
-                ).formLogin(login -> login.disable()).build();
+                ).formLogin(login -> login.disable())
+               .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+               .build();
     }
 
     // Configuring in-memory custom users using UserDetailsService
