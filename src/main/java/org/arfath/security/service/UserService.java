@@ -2,8 +2,7 @@ package org.arfath.security.service;
 
 import org.arfath.security.model.UserEntity;
 import org.arfath.security.repository.UserRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
